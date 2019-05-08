@@ -49,7 +49,7 @@ $blobClient = BlobRestProxy::createBlobService($connectionString);
 $name = "arman";
 $format = ".jpg";
 
-$fileToUpload = "arman.jpg";
+$fileToUpload = "rossi.jpg";
 // $fileToUpload = $name . $format;
 
 if (!isset($_GET["Cleanup"])) {
@@ -98,7 +98,7 @@ if (!isset($_GET["Cleanup"])) {
 
         // List blobs.
         $listBlobsOptions = new ListBlobsOptions();
-        $listBlobsOptions->setPrefix("arman");
+        $listBlobsOptions->setPrefix("rossi");
 
         echo "These are the blobs present in the container: ";
 
