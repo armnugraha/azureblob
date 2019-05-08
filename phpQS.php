@@ -98,7 +98,7 @@ if (!isset($_GET["Cleanup"])) {
 
         // List blobs.
         $listBlobsOptions = new ListBlobsOptions();
-        $listBlobsOptions->setPrefix("Arman");
+        $listBlobsOptions->setPrefix("arman");
 
         echo "These are the blobs present in the container: ";
 
