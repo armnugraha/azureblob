@@ -139,16 +139,18 @@
     <button onclick="processImage()">Analyze image</button>
     <br><br>
     <div id="wrapper" style="width:1020px; display:table;">
-        <div id="jsonOutput" style="width:600px; display:table-cell;">
+        <!-- <div id="jsonOutput" style="width:600px; display:table-cell;">
             Response:
             <br><br>
             <textarea id="responseTextArea" class="UIInput"
                       style="width:580px; height:400px;"></textarea>
-        </div>
+        </div> -->
         <div id="imageDiv" style="width:420px; display:table-cell;">
             Source image:
             <br><br>
             <img id="sourceImage" width="400" />
+            <br><br>
+            <p id="responseTextArea"></p>
         </div>
     </div>
 
@@ -188,7 +190,9 @@
      
             .done(function(data) {
                 // Show formatted JSON on webpage.
-                $("#responseTextArea").val(JSON.stringify(data, null, 2));
+                // $("#responseTextArea").val(JSON.stringify(data.description.captions[0].text, null, 2));
+                document.getElementById("responseTextArea").innerHTML = JSON.stringify(data.description.captions[0].text, null, 2)
+
             })
      
             .fail(function(jqXHR, textStatus, errorThrown) {
