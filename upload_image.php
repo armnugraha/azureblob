@@ -135,8 +135,8 @@
             };
      
             // Display the image.
-            var sourceImageUrl = document.getElementById("inputImage").value;
-            document.querySelector("#sourceImage").src = sourceImageUrl;
+            // var sourceImageUrl = document.getElementById("inputImage").value;
+            // document.querySelector("#sourceImage").src = sourceImageUrl;
      
             // Make the REST API call.
             $.ajax({
@@ -152,7 +152,7 @@
                 type: "POST",
      
                 // Request body.
-                data: '{"url": ' + '"' + sourceImageUrl + '"}',
+                data: '{"url": http://upload.wikimedia.org/wikipedia/commons/3/3c/Shaki_waterfall.jpg"}',
             })
      
             .done(function(data) {
