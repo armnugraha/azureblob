@@ -120,56 +120,6 @@
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js"></script>
 </head>
 <body>
-
-    <script type="text/javascript">
-        function processImage() {
-            var subscriptionKey = "eb3427a18a864197a229a27ee6c0ba57";
-     
-            var uriBase = "https://southeastasia.api.cognitive.microsoft.com/vision/v2.0/analyze";
-     
-            // Request parameters.
-            var params = {
-                "visualFeatures": "Categories,Description,Color",
-                "details": "",
-                "language": "en",
-            };
-     
-            // Display the image.
-            // var sourceImageUrl = document.getElementById("inputImage").value;
-            // document.querySelector("#sourceImage").src = sourceImageUrl;
-     
-            // Make the REST API call.
-            $.ajax({
-                url: uriBase + "?" + $.param(params),
-     
-                // Request headers.
-                beforeSend: function(xhrObj){
-                    xhrObj.setRequestHeader("Content-Type","application/json");
-                    xhrObj.setRequestHeader(
-                        "Ocp-Apim-Subscription-Key", subscriptionKey);
-                },
-     
-                type: "POST",
-     
-                // Request body.
-                data: '{"url": http://upload.wikimedia.org/wikipedia/commons/3/3c/Shaki_waterfall.jpg"}',
-            })
-     
-            .done(function(data) {
-                // Show formatted JSON on webpage.
-                $("#responseTextArea").val(JSON.stringify(data, null, 2));
-            })
-     
-            .fail(function(jqXHR, textStatus, errorThrown) {
-                // Display error message.
-                var errorString = (errorThrown === "") ? "Error. " :
-                    errorThrown + " (" + jqXHR.status + "): ";
-                errorString += (jqXHR.responseText === "") ? "" :
-                    jQuery.parseJSON(jqXHR.responseText).message;
-                alert(errorString);
-            });
-        };
-    </script>
     
     <h1>Upload Image Success</h1>
     <h1>Analyze image:</h1>
@@ -201,6 +151,56 @@
             <img id="sourceImage" width="400" />
         </div>
     </div>
+
+<script type="text/javascript">
+        function processImage() {
+            var subscriptionKey = "eb3427a18a864197a229a27ee6c0ba57";
+     
+            var uriBase = "https://southeastasia.api.cognitive.microsoft.com/vision/v2.0/analyze";
+     
+            // Request parameters.
+            var params = {
+                "visualFeatures": "Categories,Description,Color",
+                "details": "",
+                "language": "en",
+            };
+     
+            // Display the image.
+            var sourceImageUrl = document.getElementById("inputImage").value;
+            document.querySelector("#sourceImage").src = sourceImageUrl;
+     
+            // Make the REST API call.
+            $.ajax({
+                url: uriBase + "?" + $.param(params),
+     
+                // Request headers.
+                beforeSend: function(xhrObj){
+                    xhrObj.setRequestHeader("Content-Type","application/json");
+                    xhrObj.setRequestHeader(
+                        "Ocp-Apim-Subscription-Key", subscriptionKey);
+                },
+     
+                type: "POST",
+     
+                // Request body.
+                data: '{"url": ' + '"' + sourceImageUrl + '"}',
+            })
+     
+            .done(function(data) {
+                // Show formatted JSON on webpage.
+                $("#responseTextArea").val(JSON.stringify(data, null, 2));
+            })
+     
+            .fail(function(jqXHR, textStatus, errorThrown) {
+                // Display error message.
+                var errorString = (errorThrown === "") ? "Error. " :
+                    errorThrown + " (" + jqXHR.status + "): ";
+                errorString += (jqXHR.responseText === "") ? "" :
+                    jQuery.parseJSON(jqXHR.responseText).message;
+                alert(errorString);
+            });
+        };
+    </script>
 
 </body>
 </html>
